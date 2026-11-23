@@ -1,0 +1,35 @@
+plugins {
+    id 'java'
+    id 'org.springframework.boot' version '4.2.0'
+    id 'io.spring.dependency-management' version '1.1.7'
+}
+
+group = 'fr.cegos'
+version = '0.0.1-SNAPSHOT'
+description = 'demoAOP'
+
+java {
+    toolchain {
+        languageVersion = JavaLanguageVersion.of(25)
+    }
+}
+
+repositories {
+    mavenCentral()
+}
+
+/**
+ * Vigilance : ne pas oublier lorsqu'on utilise de la programmation orientée aspect d'ajouter la dépendance :
+ * implementation 'org.springframework.boot:spring-boot-starter-aspectj'
+ * ET ne pas oublier de recharger les dépendances ensuite (icone double flêches en haut à droite avec l'éléphant)
+ */
+dependencies {
+    implementation 'org.springframework.boot:spring-boot-starter-webmvc'
+    implementation 'org.springframework.boot:spring-boot-starter-aspectj'
+    testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
+    testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+}
+
+tasks.named('test') {
+    useJUnitPlatform()
+}
